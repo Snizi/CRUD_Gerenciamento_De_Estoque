@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+{% block content %}
+
+    <div class="container px-4 px-lg-5 mt-5">
+        <form>
+            <!-- Product Name -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form4Example1" class="form-control" />
+                <label class="form-label" for="form4Example1">Nome do Produto</label>
+            </div>
+        
+            <!-- Quantity -->
+            <div class="form-outline mb-4">
+                <input type="email" id="form4Example2" class="form-control" />
+                <label class="form-label" for="form4Example2">Quantidade</label>
+            </div>
+        
+            <!-- Description -->
+            <div class="form-outline mb-4">
+                <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                <label class="form-label" for="form4Example3">Descrição</label>
+            </div>
+        
+            <!-- Image upload -->
+            
+            <div class="form-outline mb-4">
+                <input type="file" class="form-control" id="customFile" />
+                <label class="form-label" for="customFile">Imagem do produto</label>
+            </div>
+            
+            
+            
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
+        </form>
+    </div>
+{%endblock%}
