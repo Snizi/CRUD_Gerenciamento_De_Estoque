@@ -19,11 +19,11 @@ conn.autocommit = True
 
 cursor = conn.cursor()
 
-try:
-    print("Criado um banco chamado -> CRUDSI")
-    cursor.execute("CREATE database crudsi")
-except:
-    pass
+
+
+cursor.execute("DROP database IF EXISTS crudsi")
+print("Criado um banco chamado -> CRUDSI")
+cursor.execute("CREATE database crudsi")
 
 conn.close()
 cursor.close()
