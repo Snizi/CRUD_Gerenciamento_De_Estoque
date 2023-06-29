@@ -1,7 +1,3 @@
-#cadastrar estoque
-#botar preço
-#classificar o produto
-#dar baixa no produto
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 
 
