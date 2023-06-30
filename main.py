@@ -42,7 +42,24 @@ def cadastrar():
     else:
         return render_template('cadastro.html')
 
+@app.route('/remover', methods = ["GET", "DELETE"],)
+def remover():
+    if request.method == "POST":
+        product_name = request.form["ProductName"]
+        product_quantity = request.form["Quantity"]
+        product = ProductModel.query.filter_by(product_name=product_name).all()
+        if product:
+            for p in product:
+                print(p.product_name)
+            return render_template('remover.html')
+        else:
+            flash("Produto não está cadastrado")
+            return render_template('remover.html')
+    else:
+        return render_template('remover.html')
     
+
+
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True)
