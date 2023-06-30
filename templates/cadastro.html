@@ -1,23 +1,31 @@
 {% extends "template.html" %}
 {% block content %}
-
+    {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+        <ul id="messages" class="list-unstyled">
+        {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <div class="container px-4 px-lg-5 mt-5">
-        <form>
+        <form action="/cadastrar" method="post">
             <!-- Product Name -->
             <div class="form-outline mb-4">
-                <input type="text" id="form4Example1" class="form-control" />
+                <input type="text" id="form4Example1" name="ProductName" class="form-control" />
                 <label class="form-label" for="form4Example1">Nome do Produto</label>
             </div>
         
             <!-- Quantity -->
             <div class="form-outline mb-4">
-                <input type="email" id="form4Example2" class="form-control" />
+                <input type="number" id="form4Example2" name="Quantity" class="form-control" />
                 <label class="form-label" for="form4Example2">Quantidade</label>
             </div>
         
             <!-- Description -->
             <div class="form-outline mb-4">
-                <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                <textarea class="form-control" id="form4Example3" name="Description" rows="4"></textarea>
                 <label class="form-label" for="form4Example3">Descrição</label>
             </div>
         
