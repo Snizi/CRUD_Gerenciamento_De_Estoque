@@ -27,7 +27,6 @@ class ProductModel(db.Model):
 def index():
     #produto_zerado = (ProductModel.product_quantity == 0) não consigo testar
     product = ProductModel.query.order_by(ProductModel.product_name)
-    print(product)
     return render_template('index.html', product = product)
 
 @app.route('/cadastrar', methods = ["GET", "POST"],)
@@ -70,15 +69,24 @@ def remover():
         return render_template('remover.html')
     
 
-@app.route('/editar', methods = ["GET", "PUT"],)
+@app.route('/editar', methods=["GET", "POST"])
 def editar():
     if request.method == "POST":
         product_name = request.form["ProductName"]
-        product_quantity = request.form["Quantity"]
-        product_price = request.form["Price"]
-        product = ProductModel.query.filter_by(product_name=product_name).all()
+        product = ProductModel.query.filter_by(product_name=product_name).first()
+
+        if product:
+            product.quantity = request.form["Quantity"]
+            product.price = request.form["Price"]
+            db.session.add(product)
+            db.session.commit()
+            flash("Produto editado com sucesso! <3")
+        else:
+            flash("Produto não está cadastrado!")
 
     return render_template('editar.html')
+        
+    
 
     
 
