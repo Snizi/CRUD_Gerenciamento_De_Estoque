@@ -55,12 +55,10 @@ def remover():
         
         if product:
             if product_quantity >= product.product_quantity:
-                # If the requested quantity is greater than or equal to the available quantity,
-                # delete the entire product
+               
                 db.session.delete(product)
             else:
-                # If the requested quantity is less than the available quantity,
-                # update the quantity of the product
+              
                 product.product_quantity -= product_quantity
             
             db.session.commit()
