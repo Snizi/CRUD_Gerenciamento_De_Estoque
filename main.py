@@ -45,15 +45,25 @@ def cadastrar():
     else:
         return render_template('cadastro.html')
 
-@app.route('/remover', methods = ["GET", "DELETE"],)
+@app.route('/remover', methods = ["GET", "POST"],)
 def remover():
     if request.method == "POST":
         product_name = request.form["ProductName"]
-        product_quantity = request.form["Quantity"]
-        product = ProductModel.query.filter_by(product_name=product_name).all()
+        product_quantity = int(request.form["Quantity"])
+        
+        product = ProductModel.query.filter_by(product_name=product_name).first()
+        
         if product:
-            for p in product:
-                print(p.product_name)
+            if product_quantity >= product.product_quantity:
+                # If the requested quantity is greater than or equal to the available quantity,
+                # delete the entire product
+                db.session.delete(product)
+            else:
+                # If the requested quantity is less than the available quantity,
+                # update the quantity of the product
+                product.product_quantity -= product_quantity
+            
+            db.session.commit()
             return render_template('remover.html')
         else:
             flash("Produto não está cadastrado")
