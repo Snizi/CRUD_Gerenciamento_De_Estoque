@@ -74,7 +74,7 @@ def editar():
             db.session.commit()
             flash("Produto editado com sucesso! <3")
         else:
-            flash("Produto não está cadastrado")
+            flash("Produto não está cadastrado!")
 
     return render_template('editar.html')
         
